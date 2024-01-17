@@ -5,8 +5,7 @@ async function connect() {
     return global.connection.connect();
   }
   const pool = new pg.Pool({
-    connectionString:
-      "postgres://xoizcdhi:rvQsEefWwKY_D9XPXZGqmBFtkF1JerjF@batyr.db.elephantsql.com/xoizcdhi",
+    connectionString: "Endereço API",
   });
   global.connection = pool;
 
