@@ -5,7 +5,7 @@ async function connect() {
     return global.connection.connect();
   }
   const pool = new pg.Pool({
-    connectionString: "Endereço API",
+    connectionString: "Endereço BD",
   });
   global.connection = pool;
 
