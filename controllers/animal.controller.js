@@ -19,4 +19,8 @@ async function createAnimal(req, res, next) {
   }
 }
 
-export default { createAnimal };
+async function getAnimais(req, res, next) {
+  res.send(await AnimalService.getAnimais());
+}
+
+export default { createAnimal, getAnimais };

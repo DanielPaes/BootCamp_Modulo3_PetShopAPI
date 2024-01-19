@@ -3,10 +3,8 @@ import ProprietarioController from "../controllers/proprietario.controller.js";
 
 const route = express.Router();
 
-route.get("/", (req, res) => {
-  res.send("Rota proprietario");
-});
-
 route.post("/", ProprietarioController.createProprietario);
+route.get("/", ProprietarioController.getProprietarios);
+route.get("/:id", ProprietarioController.getProprietario);
 
 export default route;

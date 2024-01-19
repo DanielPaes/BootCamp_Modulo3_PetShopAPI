@@ -6,10 +6,6 @@ import proprietarioRouter from "./routes/proprietario.route.js";
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 app.use("/animal", animalRouter);
 app.use("/proprietario", proprietarioRouter);
 

@@ -19,4 +19,12 @@ async function createProprietario(req, res, next) {
   }
 }
 
-export default { createProprietario };
+async function getProprietarios(req, res, next) {
+  res.send(await PropritarioService.getProprietarios());
+}
+
+async function getProprietario(req, res, next) {
+  res.send(await PropritarioService.getProprietario(req.params.id));
+}
+
+export default { createProprietario, getProprietarios, getProprietario };

@@ -16,4 +16,17 @@ async function insertAnimal(animal) {
   }
 }
 
-export default { insertAnimal };
+async function getAnimais() {
+  const conn = await connect();
+
+  try {
+    const res = await conn.query("SELECT * FROM animais");
+    return res.rows;
+  } catch (err) {
+    throw err;
+  } finally {
+    conn.release();
+  }
+}
+
+export default { insertAnimal, getAnimais };

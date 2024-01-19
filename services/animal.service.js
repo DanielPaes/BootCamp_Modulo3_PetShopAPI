@@ -4,4 +4,8 @@ async function createAnimal(animal) {
   return await AnimalRepository.insertAnimal(animal);
 }
 
-export default { createAnimal };
+async function getAnimais() {
+  return await AnimalRepository.getAnimais();
+}
+
+export default { createAnimal, getAnimais };

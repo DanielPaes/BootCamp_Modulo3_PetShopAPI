@@ -3,10 +3,7 @@ import AnimalController from "../controllers/animal.controller.js";
 
 const route = express.Router();
 
-route.get("/", (req, res) => {
-  res.send("Rota animal");
-});
-
 route.post("/", AnimalController.createAnimal);
+route.get("/", AnimalController.getAnimais);
 
 export default route;
