@@ -8,5 +8,8 @@ app.use(express.json());
 app.use(cors());
 app.use("/animal", animalRouter);
 app.use("/proprietario", proprietarioRouter);
+app.use((err, req, res, next) => {
+  res.status(400).send({ error: err.message });
+});
 
 app.listen(3001, () => console.log("API Iniciada."));

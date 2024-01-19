@@ -23,4 +23,8 @@ async function getAnimais(req, res, next) {
   res.send(await AnimalService.getAnimais());
 }
 
-export default { createAnimal, getAnimais };
+async function getAnimal(req, res, next) {
+  res.send(await AnimalService.getAnimal(req.params.id));
+}
+
+export default { createAnimal, getAnimais, getAnimal };

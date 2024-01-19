@@ -5,5 +5,6 @@ const route = express.Router();
 
 route.post("/", AnimalController.createAnimal);
 route.get("/", AnimalController.getAnimais);
+route.get("/:id", AnimalController.getAnimal);
 
 export default route;

@@ -29,4 +29,19 @@ async function getAnimais() {
   }
 }
 
-export default { insertAnimal, getAnimais };
+async function getAnimal(id) {
+  const conn = await connect();
+
+  try {
+    const res = await conn.query("SELECT * FROM animais WHERE animal_id = $1", [
+      id,
+    ]);
+    return res.rows;
+  } catch (err) {
+    throw err;
+  } finally {
+    conn.release();
+  }
+}
+
+export default { insertAnimal, getAnimais, getAnimal };

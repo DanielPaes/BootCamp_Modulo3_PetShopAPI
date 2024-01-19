@@ -12,4 +12,18 @@ async function getProprietario(id) {
   return await ProprietarioRepository.getProprietario(id);
 }
 
-export default { createProprietario, getProprietarios, getProprietario };
+async function deleteProprietario(id) {
+  return await ProprietarioRepository.deleteProprietario(id);
+}
+
+async function updateProprietario(proprietario) {
+  return await ProprietarioRepository.updateProprietario(proprietario);
+}
+
+export default {
+  createProprietario,
+  getProprietarios,
+  getProprietario,
+  deleteProprietario,
+  updateProprietario,
+};

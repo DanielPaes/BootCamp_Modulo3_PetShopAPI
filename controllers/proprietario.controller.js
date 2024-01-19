@@ -27,4 +27,29 @@ async function getProprietario(req, res, next) {
   res.send(await PropritarioService.getProprietario(req.params.id));
 }
 
-export default { createProprietario, getProprietarios, getProprietario };
+async function deleteProprietario(req, res, next) {
+  try {
+    await PropritarioService.deleteProprietario(req.params.id);
+    res.end();
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function updateProprietario(req, res, next) {
+  try {
+    let proprietario = req.body;
+    proprietario = await PropritarioService.updateProprietario(proprietario);
+    res.send(proprietario);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export default {
+  createProprietario,
+  getProprietarios,
+  getProprietario,
+  deleteProprietario,
+  updateProprietario,
+};
