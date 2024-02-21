@@ -1,17 +1,12 @@
 import PropritarioService from "../services/proprietario.service.js";
+import AnimalRepository from "../repositories/animal.repository.js";
 
 async function createProprietario(req, res, next) {
   try {
     let proprietario = req.body;
-    //   if (
-    //     !client.name ||
-    //     !client.cpf ||
-    //     !client.phone ||
-    //     !client.email ||
-    //     !client.address
-    //   ) {
-    //     throw new Error("Name, CPF, Phone, Email e Address são obrigatórios.");
-    //   }
+    if (!proprietario.nome || !proprietario.telefone) {
+      throw new Error("Nome e telefone são obrigatórios.");
+    }
     proprietario = await PropritarioService.createProprietario(proprietario);
     res.send(proprietario);
   } catch (err) {
@@ -29,8 +24,13 @@ async function getProprietario(req, res, next) {
 
 async function deleteProprietario(req, res, next) {
   try {
-    await PropritarioService.deleteProprietario(req.params.id);
-    res.end();
+    const arr = await AnimalRepository.getAnimalbyProprietarioId(req.params.id);
+    if (arr.length == 0) {
+      await PropritarioService.deleteProprietario(req.params.id);
+      res.end();
+    } else {
+      throw new Error("Proprietario vinculado a um animal");
+    }
   } catch (err) {
     next(err);
   }

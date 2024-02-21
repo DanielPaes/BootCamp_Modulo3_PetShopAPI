@@ -16,6 +16,26 @@ async function insertAnimal(animal) {
   }
 }
 
+async function updateAnimal(animal) {
+  const conn = await connect();
+  try {
+    const sql =
+      "UPDATE animais SET nome = $1, tipo = $2, proprietario_id = $3 WHERE animal_id = $4 RETURNING *";
+    const values = [
+      animal.nome,
+      animal.tipo,
+      animal.proprietario_id,
+      animal.animal_id,
+    ];
+    const res = await conn.query(sql, values);
+    return res.rows[0];
+  } catch (err) {
+    throw err;
+  } finally {
+    conn.release();
+  }
+}
+
 async function getAnimais() {
   const conn = await connect();
 
@@ -44,6 +64,22 @@ async function getAnimal(id) {
   }
 }
 
+async function getAnimalbyProprietarioId(id) {
+  const conn = await connect();
+
+  try {
+    const res = await conn.query(
+      "SELECT * FROM animais WHERE proprietario_id = $1",
+      [id]
+    );
+    return res.rows;
+  } catch (err) {
+    throw err;
+  } finally {
+    conn.release();
+  }
+}
+
 async function deleteAnimal(id) {
   const conn = await connect();
   try {
@@ -55,4 +91,11 @@ async function deleteAnimal(id) {
   }
 }
 
-export default { insertAnimal, getAnimais, getAnimal, deleteAnimal };
+export default {
+  insertAnimal,
+  updateAnimal,
+  getAnimais,
+  getAnimal,
+  getAnimalbyProprietarioId,
+  deleteAnimal,
+};
